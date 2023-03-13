@@ -26,4 +26,9 @@ class Dashboard extends CI_Controller {
         $data['title'] = "Registration - CodersMag";
         $this->load->view('dashboard', $data);
     }
+
+    public function datatabel(){
+        $data['title'] = "Registration - CodersMag";
+        $this->load->view('tabel', $data);
+    }
 }
