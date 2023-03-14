@@ -31,4 +31,14 @@ class Dashboard extends CI_Controller {
         $data['title'] = "Registration - CodersMag";
         $this->load->view('tabel', $data);
     }
+
+    public function login(){
+        $data['title'] = "Registration - CodersMag";
+        $this->load->view('login', $data);
+    }
+
+    public function forgot_password(){
+        $data['title'] = "Registration - CodersMag";
+        $this->load->view('forgot_password', $data);
+    }
 }
