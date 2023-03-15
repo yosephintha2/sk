@@ -41,4 +41,9 @@ class Dashboard extends CI_Controller {
         $data['title'] = "Registration - CodersMag";
         $this->load->view('forgot_password', $data);
     }
+
+    public function page(){
+        $data['title'] = "Registration - CodersMag";
+        $this->load->view('page', $data);
+    }
 }

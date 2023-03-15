@@ -17,8 +17,8 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <!-- <a href="../../index2.html"><b>Admin</b>LTE</a> -->
-    <!-- <img src="<?php echo base_url() ?>/assets/images/logo.png" width="150px" class="img-fluid"> -->
+    <a href="../../index2.html"><b>Admin</b>LTE</a>
+    <!-- <img src="<?php echo base_url() ?>/assets/images/logo.png" width="200px" class="img-fluid"> -->
   </div>
   <!-- /.login-logo -->
   <div class="card">
