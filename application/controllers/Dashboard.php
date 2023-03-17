@@ -46,4 +46,9 @@ class Dashboard extends CI_Controller {
         $data['title'] = "Registration - CodersMag";
         $this->load->view('page', $data);
     }
+
+    public function pdf_viewer(){
+        $data['title'] = "Registration - CodersMag";
+        $this->load->view('pdf_viewer', $data);
+    }
 }
