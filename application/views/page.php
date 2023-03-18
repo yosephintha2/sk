@@ -41,6 +41,14 @@
               </div>
               <div class="card-body">
                 Start creating your amazing application!
+                <i class="fas fa-user"></i>
+                <i class="fas fa-file-signature"></i>
+                <i class="fas fa-file-edit"></i>
+                <i class="fas fa-file-alt"></i>
+                <i class="fas fa-clipboard-list-check"></i>
+                <i class="fas fa-clipboard-list"></i>
+                <i class="fas fa-book"></i>
+                <i class="fas fa-ballot-check"></i>
               </div>
               <!-- /.card-body -->
               <div class="card-footer">

@@ -31,10 +31,10 @@
               <div class="inner">
                 <h3>150</h3>
 
-                <p>SK Bersama</p>
+                <p>SK Pribadi</p>
               </div>
               <div class="icon">
-                <i class="ion ion-folder"></i>
+                <i class="fas fa-file-alt"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -46,10 +46,10 @@
               <div class="inner">
                 <h3>53<sup style="font-size: 20px">%</sup></h3>
 
-                <p>SK Pribadi</p>
+                <p>SK Bersama</p>
               </div>
               <div class="icon">
-                <i class="ion ion-filing"></i>
+                <i class="fas fa-book"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -64,7 +64,7 @@
                 <p>Cuti</p>
               </div>
               <div class="icon">
-                <i class="ion ion-clipboard"></i>
+                <i class="fas fa-file-signature"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -79,7 +79,7 @@
                 <p>Pengguna</p>
               </div>
               <div class="icon">
-                <i class="ion ion-android-people"></i>
+                <i class="fas fa-cog"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
