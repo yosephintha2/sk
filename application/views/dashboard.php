@@ -34,7 +34,7 @@
                 <p>SK Pribadi</p>
               </div>
               <div class="icon">
-                <i class="fas fa-file-alt"></i>
+                <i class="far fa-file-alt"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
@@ -49,7 +49,7 @@
                 <p>SK Bersama</p>
               </div>
               <div class="icon">
-                <i class="fas fa-book"></i>
+                <i class="fas fa-file-alt"></i>
               </div>
               <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
