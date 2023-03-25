@@ -13,6 +13,10 @@
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+  <!-- Toastr -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/toastr/toastr.min.css">
 
   <!-- DataTables -->
   <link rel="stylesheet" href="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -27,6 +31,56 @@
   <link rel="stylesheet" href="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.css">
   <!-- summernote -->
   <link rel="stylesheet" href="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.css">
+
+   <!-- jQuery -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/sparklines/sparkline.js"></script>
+<!-- daterangepicker -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/moment/moment.min.js"></script>
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.js"></script>
+
+<!-- DataTables  & Plugins -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/jszip/jszip.min.js"></script>
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/pdfmake/pdfmake.min.js"></script>
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/pdfmake/vfs_fonts.js"></script>
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<!-- SweetAlert2 -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/sweetalert2/sweetalert2.min.js"></script>
+<!-- Toastr -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/toastr/toastr.min.js"></script>
+<!-- Summernote -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/dist/js/demo.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/dist/js/pages/dashboard.js"></script>
+
+
+
 </head>
 
 <style type="text/css">
@@ -41,6 +95,11 @@
  color:#a94442;background-color:#f2dede;border-color:#a94442}
  .has-error .form-control-feedback{
  color:#a94442}
+
+ .page-item.active .page-link {
+    background-color: #17a2b8 !important;
+    border: #17a2b8 !important;
+}
   </style>
 
 <body class="hold-transition sidebar-mini layout-navbar-fixed">

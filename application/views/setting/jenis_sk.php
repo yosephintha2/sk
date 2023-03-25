@@ -37,11 +37,13 @@
               </div>
               <!-- /.card-header -->
               <div class="card-body">
-              	   <table id="tipe_pengguna" class="table table-bordered table-striped">
+              	   <table id="jenis_sk" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th class="text-center">No</th>
-                    <th class="text-center">Tipe Pengguna</th>
+                    <th class="text-center">SK</th>
+                    <th class="text-center">Tipe</th>
+                    <th class="text-center">Keterangan</th>
                     <th class="text-center">Aksi</th>
                   </tr>
                   </thead>
@@ -52,9 +54,11 @@
         	$i++;
           echo "<tr>";
           echo "<td class='text-center'>$i</td>";
-          echo "<td>$r->tipe_user</td>";
-          echo "<td class='text-center'><a class='btn btn-sm btn-info' href='javascript:void(0)' title='Edit' onclick='edit($r->id_tipe_user)'><i class='fas fa-edit'></i></a>
-				  <a class='btn btn-sm btn-danger' href='javascript:void(0)' title='Hapus' onclick='del($r->id_tipe_user)'><i class='fas fa-trash-alt'></i></a>
+          echo "<td>$r->jenis_berkas</td>";
+          echo "<td>$r->tipe_berkas</td>";
+          echo "<td>$r->keterangan</td>";
+          echo "<td class='text-center'><a class='btn btn-sm btn-info' href='javascript:void(0)' title='Edit' onclick='edit($r->id_jenis_berkas)'><i class='fas fa-edit'></i></a>
+				  <a class='btn btn-sm btn-danger' href='javascript:void(0)' title='Hapus' onclick='del($r->id_jenis_berkas)'><i class='fas fa-trash-alt'></i></a>
           </td>";
           echo "</tr>";
         }
@@ -80,7 +84,7 @@
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              <h4 class="modal-title">Tambah Tipe Pengguna</h4>
+              <h4 class="modal-title">Tambah Jenis SK</h4>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -88,10 +92,15 @@
             <form action="#" id="form" >
             <div class="modal-body">              
                 <input type="hidden" value="" name="id"/> 
-                <input type="hidden" value="tipe_pengguna" name="form"/> 
+                <input type="hidden" value="jenis_sk" name="form"/> 
                 <div class="form-group">
-                    <label class="control-label">Tipe Pengguna</label>
-                    <input type="text" class="form-control" name="tipe_pengguna" placeholder="" required="">
+                    <label class="control-label">Jenis SK</label>
+                    <input type="text" class="form-control" name="jenis_sk" placeholder="" required="">
+                    <span class="help-block"></span>
+                </div>
+                <div class="form-group">
+                    <label class="control-label">Keterangan</label>
+                    <input type="text" class="form-control" name="keterangan" placeholder="" required="">
                     <span class="help-block"></span>
                 </div>
             </div>
@@ -117,7 +126,7 @@ var base_url = '<?php echo base_url();?>';
 $(document).ready(function() {
 
     //datatables
-    table = $("#tipe_pengguna").DataTable({
+    table = $("#jenis_sk").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false
       // ,"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
@@ -127,11 +136,11 @@ $(document).ready(function() {
 function add(){
     save_method = 'add';
     $('#form')[0].reset(); // reset form on modals
-    $('[name="form"]').val('tipe_pengguna');
+    $('[name="form"]').val('jenis_sk');
     $('.form-group').removeClass('has-error'); // clear error class
     $('.help-block').empty(); // clear error string
     $('#modal_form').modal('show'); // show bootstrap modal
-    $('.modal-title').text('Tambah Tipe Pengguna'); // Set Title to Bootstrap modal title
+    $('.modal-title').text('Tambah Jenis SK'); // Set Title to Bootstrap modal title
 }
 
 function edit(id){
@@ -148,11 +157,11 @@ function edit(id){
         dataType: "JSON",
         success: function(data){
 
-            $('[name="id"]').val(data.id_tipe_user);
-            $('[name="tipe_pengguna"]').val(data.tipe_user);
-            $('[name="form"]').val('tipe_pengguna');
+            $('[name="id"]').val(data.id_jenis_berkas);
+            $('[name="jenis_sk"]').val(data.jenis_berkas);
+            $('[name="form"]').val('jenis_sk');
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-            $('.modal-title').text('Edit Tipe Pengguna'); // Set title to Bootstrap modal title
+            $('.modal-title').text('Edit Jenis SK'); // Set title to Bootstrap modal title
         },
         error: function (jqXHR, textStatus, errorThrown)
         {
@@ -219,7 +228,7 @@ function del(id){
         $.ajax({
             url : "<?php echo site_url('setting/ajax_delete')?>/"+id,
             type: "POST",
-            data: {form: 'tipe_pengguna'},
+            data: {form: 'jenis_sk'},
             dataType: "JSON",
             success: function(data){
                 //if success reload ajax table
