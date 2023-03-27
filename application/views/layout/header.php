@@ -18,6 +18,10 @@
   <!-- Toastr -->
   <link rel="stylesheet" href="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/toastr/toastr.min.css">
 
+  <!-- Select2 -->
+  <link rel="stylesheet" href="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/select2/css/select2.min.css">
+  <link rel="stylesheet" href="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+  
   <!-- DataTables -->
   <link rel="stylesheet" href="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
@@ -42,6 +46,8 @@
 </script>
 <!-- Bootstrap 4 -->
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/select2/js/select2.full.min.js"></script>
 <!-- ChartJS -->
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->

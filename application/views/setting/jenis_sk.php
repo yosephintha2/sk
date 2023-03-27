@@ -52,11 +52,15 @@
                   	 $i = 0;
         foreach ($rows as $r) {
         	$i++;
+            $tipe_berkas = $this->conversion->tipe_berkas($r->tipe_berkas);
+
+            // echo isset($r->keterangan) ? $r->keterangan:'-';exit();
+
           echo "<tr>";
           echo "<td class='text-center'>$i</td>";
           echo "<td>$r->jenis_berkas</td>";
-          echo "<td>$r->tipe_berkas</td>";
-          echo "<td>$r->keterangan</td>";
+          echo "<td>$tipe_berkas</td>";
+          echo "<td>".(isset($r->keterangan) ? $r->keterangan:"-")."</td>";
           echo "<td class='text-center'><a class='btn btn-sm btn-info' href='javascript:void(0)' title='Edit' onclick='edit($r->id_jenis_berkas)'><i class='fas fa-edit'></i></a>
 				  <a class='btn btn-sm btn-danger' href='javascript:void(0)' title='Hapus' onclick='del($r->id_jenis_berkas)'><i class='fas fa-trash-alt'></i></a>
           </td>";
@@ -99,6 +103,14 @@
                     <span class="help-block"></span>
                 </div>
                 <div class="form-group">
+                  <label class="control-label">Tipe SK</label>
+          <!--         <?php //echo form_dropdown('tipe_sk', $tipe_sk, $this->input->post('tipe_sk'), "id='tipe_sk' class='form-control select2bs4' required") ?> -->
+                                  
+                  <?= form_dropdown('tipe_sk', $tipe_sk, $this->input->post('tipe_sk'), 
+                        "id='tipe_sk' class='form-control' required") ?>
+                    <span class="help-block"></span>
+                </div>
+                <div class="form-group">
                     <label class="control-label">Keterangan</label>
                     <input type="text" class="form-control" name="keterangan" placeholder="" required="">
                     <span class="help-block"></span>
@@ -123,6 +135,13 @@ var save_method; //for save method string
 var table;
 var base_url = '<?php echo base_url();?>';
 
+ $(function () {
+    //Initialize Select2 Elements
+    $('.select2bs4').select2({
+      theme: 'bootstrap4'
+    })
+});
+
 $(document).ready(function() {
 
     //datatables
@@ -131,6 +150,20 @@ $(document).ready(function() {
       // ,"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
+    $("input").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
+
+    $("select").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
+
+    $("textarea").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
   });
 
 function add(){
@@ -153,12 +186,14 @@ function edit(id){
     //Ajax Load data from ajax
     $.ajax({
         url : "<?php echo site_url('setting/ajax_edit')?>/" + id,
-        type: "GET",
+        type: "POST",
+        data: {form: 'jenis_sk'},
         dataType: "JSON",
         success: function(data){
 
             $('[name="id"]').val(data.id_jenis_berkas);
             $('[name="jenis_sk"]').val(data.jenis_berkas);
+            $('[name="tipe_sk"]').val(data.tipe_berkas);
             $('[name="form"]').val('jenis_sk');
             $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
             $('.modal-title').text('Edit Jenis SK'); // Set title to Bootstrap modal title

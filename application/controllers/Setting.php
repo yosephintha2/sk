@@ -19,7 +19,7 @@ class Setting extends CI_Controller {
         parent::__construct();
         //load model
         $this->load->model('Setting_model', 'setting');
-        $this->load->library('form_validation');
+        $this->load->library('form_option', 'conversion');
         $this->load->helper('url');
     }
 
@@ -28,6 +28,7 @@ class Setting extends CI_Controller {
         $data['subtitle'] = "Jenis SK";
         $data['page'] = "jenis_sk";
         $data['rows'] = $this->setting->get_all('jenis_berkas');
+        $data['tipe_sk'] = $this->form_option->tipe_berkas('');
         $this->load->view('setting/jenis_sk', $data);
     }
 
@@ -48,7 +49,17 @@ class Setting extends CI_Controller {
     }
 
     public function ajax_edit($id) {
-        $data = $this->setting->get_by_id('tipe_user','id_tipe_user',$id);
+      $form = $_POST['form'];
+        if ($form == 'tipe_pengguna'){
+            $tabel = 'tipe_user';
+            $tabel_id = 'id_tipe_user';
+        }   
+
+        if ($form == 'jenis_sk'){
+            $tabel = 'jenis_berkas';
+            $tabel_id = 'id_jenis_berkas';
+        } 
+        $data = $this->setting->get_by_id($tabel, $tabel_id, $id);
        // $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
         echo json_encode($data);
     }
@@ -144,7 +155,7 @@ class Setting extends CI_Controller {
                $data['status'] = FALSE;
             }
 
-            if ($this->input->post('tipe_sk') == '') {
+         if ($this->input->post('tipe_sk') == '') {
                $data['inputerror'][] = 'tipe_sk';
                $data['error_string'][] = 'Tipe SK is required';
                $data['status'] = FALSE;
