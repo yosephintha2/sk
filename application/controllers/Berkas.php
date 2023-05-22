@@ -13,39 +13,24 @@
 if (!defined('BASEPATH'))
     exit('No direct script access allowed');
 
-class Setting extends CI_Controller {
+class Berkas extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
         //load model
-        $this->load->model('Setting_model', 'setting');
+        $this->load->model('Berkas_pribadi_model', 'pribadi');
+        $this->load->model('Berkas_bersama_model', 'bersama');
         $this->load->library('form_option', 'conversion');
         $this->load->helper('url');
     }
 
-    public function jenis_sk(){
-        $data['title'] = "Setting - Jenis SK";
-        $data['subtitle'] = "Jenis SK";
-        $data['page'] = "jenis_sk";
-        $data['rows'] = $this->setting->get_all('jenis_berkas');
-        $data['tipe_sk'] = $this->form_option->tipe_berkas('');
+    public function bersama(){
+        $data['title'] = "SK Bersama";
+        $data['subtitle'] = "SK Bersama";
+        $data['page'] = "sk_bersama";
+        $data['rows'] = $this->setting->get_all('bersama');
+        // $data['tipe_sk'] = $this->form_option->tipe_berkas('');
         $this->load->view('setting/jenis_sk', $data);
-    }
-
-    public function tipe_pengguna(){
-        $data['title'] = "Setting - Tipe Pengguna";
-        $data['subtitle'] = "Tipe Pengguna";
-        $data['page'] = "tipe_pengguna";
-        $data['rows'] = $this->setting->get_all('tipe_user');
-        // $data['footer'] = $this->load->view('layout/footer', $data, true);
-        $this->load->view('setting/tipe_pengguna', $data);
-    }
-
-    public function jatah_cuti(){
-        $data['title'] = "Setting - Jatah Cuti";
-        $data['subtitle'] = "Jatah Cuti";
-        $data['page'] = "jatah_cuti";
-        $this->load->view('setting/jatah_cuti', $data);
     }
 
     public function ajax_edit($id) {
