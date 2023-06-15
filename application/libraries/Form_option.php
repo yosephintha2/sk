@@ -13,16 +13,18 @@ class Form_option {
         return $option;
     }
 
-    public function jenis_berkas($option1, $option2) {
+/*
+    public function tipe_berkas($option) {
         $CI = & get_instance();
         $CI->load->model('db_model');
         //$option[''] = 'Jenis Pertanyaan Kuisioner';
-        $query = $CI->db_model->get('jenis_berkas', 'jenis_berkas', array('id_jenis_berkas' => $option1, 'tipe_berkas' => $option2));
+        $query = $CI->db_model->get('jenis_berkas', 'jenis_berkas', array('tipe_berkas' => $option));
         foreach ($query->result() as $data) {
             $option[$data->jenis_berkas] = $data->jenis_berkas;
-        }    
+        }   
+        return $option; 
     }
-
+*/
 
 
      

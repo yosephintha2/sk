@@ -107,8 +107,21 @@
     border: #17a2b8 !important;
 }
   </style>
+      <style type="text/css">
+        #hidden {display:none}
+        #progress-bar {position:fixed;z-index:9999;top:0;left:0;width:0;height:2px;background-color:#4aa6e7}
+        #loading {position:fixed;z-index:999;top:0;left:0;width:100%;height:100%;opacity: 0.5; 
+                  background:#fff url(<?php echo base_url('assets/images/loading-image.gif'); ?>) center no-repeat}
+        .style1 {
+            color: #FF0000;
+            font-size: 10px;
+        }
+    </style>
 
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
+  <div id="hidden">
+            <div id="progress-bar"></div><div id="loading"></div>
+        </div>
 <!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->

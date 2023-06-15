@@ -24,6 +24,7 @@ class Dashboard extends CI_Controller {
 
     public function index(){
         $data['title'] = "Registration - CodersMag";
+        $data['page'] = "home";
         $this->load->view('dashboard', $data);
     }
 
