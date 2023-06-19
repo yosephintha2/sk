@@ -22,7 +22,8 @@ class Berkas extends CI_Controller {
         // $this->load->model('Berkas_bersama_model', 'bersama');
         $this->load->model('Berkas_model', 'berkas');
         $this->load->library('form_option', 'conversion');
-        $this->load->helper('url','form');
+        $this->load->helper('url','form','download');
+
     }
 
     public function home($tipe){

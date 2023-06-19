@@ -30,6 +30,8 @@ class Dashboard extends CI_Controller {
 
     public function datatabel(){
         $data['title'] = "Registration - CodersMag";
+        $data['subtitle'] = '';
+        $data['page'] = '';
         $this->load->view('tabel', $data);
     }
 
@@ -45,6 +47,8 @@ class Dashboard extends CI_Controller {
 
     public function page(){
         $data['title'] = "Registration - CodersMag";
+        $data['subtitle'] = "";
+        $data['page'] = "";
         $this->load->view('page', $data);
     }
 

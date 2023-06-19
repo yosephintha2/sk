@@ -1,12 +1,6 @@
 <?php $this->load->view('layout/header');?>
 
-<style type="text/css">
-.ui-datepicker-calendar {
-    display: none;
-    }    
-</style>
-
-    <!-- Content Wrapper. Contains page content -->
+  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -25,53 +19,41 @@
       </div><!-- /.container-fluid -->
     </section>
 
+    <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
-        <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <div class="col-12">
-                    <!-- <p class="float-right"> -->
-                    <a href="#" class="btn btn-info" role="button" aria-pressed="true"><i class="fas fa-plus"></i> Tambah</a>
-                    <!-- </p> -->
-                </div>
-                <div class="form-group">
-                  <label>Minimal</label>
-                  <select class="form-control select2" style="width: 100%;">
-                    <option selected="selected">Alabama</option>
-                    <option>Alaska</option>
-                    <option>California</option>
-                    <option>Delaware</option>
-                    <option>Tennessee</option>
-                    <option>Texas</option>
-                    <option>Washington</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                    <input type="text" class="form-control" id="datepicker" />
-                </div>
+                <!-- <button type="button" class="btn btn-info"  onclick="add()">
+                  <i class="fas fa-plus"></i> Tambah
+                </button> -->
+                <a href="#" class="btn btn-info" role="button" aria-pressed="true"><i class="fas fa-plus"></i> Tambah</a>
+
+                <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
+                  <i class="fas fa-plus"></i> Tambah
+                </button> -->
+                <!-- <h3 class="card-title">DataTable with default features</h3> -->
               </div>
               <!-- /.card-header -->
-              
               <div class="card-body">
-                <table id="tabel_sk" class="table table-bordered table-striped">
+              	   <table id="tabel_sk" class="table table-bordered table-striped">
                   <thead>
                   <tr>
                     <th class="text-center">No</th>
                     <th class="text-center">No. SK</th>
-                    <th class="text-center">Nama SK</th>
+                    <th class="text-center">SK</th>
                     <th class="text-center">Tanggal SK</th>
-                    <th class="text-center">Nama Guru/Karyawan</th>
+                    <th class="text-center">Nama</th>
                     <th class="text-center">Publish</th>
                     <th class="text-center">Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
-                     <?php
-                     $i = 0;
+                  	 <?php
+                  	 $i = 0;
         foreach ($data as $r) {
-            $i++;
+        	$i++;
             //$tipe_berkas = $this->conversion->tipe_berkas($r->tipe_berkas);
 
             // echo isset($r->keterangan) ? $r->keterangan:'-';exit();
@@ -91,7 +73,7 @@
           echo "<td class='text-center'>
                 <a class='btn btn-outline-dark btn-sm' href='javascript:void(0)' title='Download'><i class='fas fa-file-pdf'></i></a>
                 <a class='btn btn-outline-info btn-sm' href='javascript:void(0)' title='Edit' onclick='edit($r->id_berkas)'><i class='fas fa-edit'></i></a>
-                  <a class='btn btn-outline-danger btn-sm' href='javascript:void(0)' title='Hapus' onclick='del($r->id_berkas)'><i class='fas fa-trash-alt'></i></a>
+				  <a class='btn btn-outline-danger btn-sm' href='javascript:void(0)' title='Hapus' onclick='del($r->id_berkas)'><i class='fas fa-trash-alt'></i></a>
           </td>";
           echo "</tr>";
         }
@@ -99,13 +81,19 @@
                   </tbody>
                 </table>
               </div>
+              <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
           </div>
-
-          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
       </div>
+      <!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
   </div>
-</section>
-   </div>
+  <!-- /.content-wrapper -->
 
   
    <div class="modal fade" id="modal_form">
@@ -153,8 +141,15 @@
         <!-- /.modal-dialog -->
       </div>
 
-<script type="text/javascript">
-    $(function () {
+      <script type="text/javascript">
+
+
+
+var save_method; //for save method string
+var table;
+var base_url = '<?php echo base_url();?>';
+
+$(function () {
     //Initialize Select2 Elements
     $('.select2').select2();
 
@@ -163,15 +158,7 @@
       theme: 'bootstrap4'
     })
 
-  });
-
-</script>
-
-<script type="text/javascript">
-
-var save_method; //for save method string
-var table;
-var base_url = '<?php echo base_url();?>';
+  })
 
 $(document).ready(function() {
 
@@ -180,31 +167,24 @@ $(document).ready(function() {
       "responsive": true, 
       "lengthChange": false, 
       "autoWidth": false,
-      "searching": false,
 
       // ,"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
-    $("#datepicker").datetimepicker( {
-    format: " yyyy", // Notice the Extra space at the beginning
-    viewMode: "years", 
-    minViewMode: "years"
-});
+    $("input").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
 
-    // $("input").change(function(){
-    //     $(this).parent().parent().removeClass('has-error');
-    //     $(this).next().empty();
-    // });
+    $("select").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
 
-    // $("select").change(function(){
-    //     $(this).parent().parent().removeClass('has-error');
-    //     $(this).next().empty();
-    // });
-
-    // $("textarea").change(function(){
-    //     $(this).parent().parent().removeClass('has-error');
-    //     $(this).next().empty();
-    // });
+    $("textarea").change(function(){
+        $(this).parent().parent().removeClass('has-error');
+        $(this).next().empty();
+    });
   });
 
 function add(){

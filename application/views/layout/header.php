@@ -48,10 +48,12 @@
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
 <!-- Select2 -->
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/select2/js/select2.full.min.js"></script>
+
 <!-- ChartJS -->
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/chart.js/Chart.min.js"></script>
 <!-- Sparkline -->
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/sparklines/sparkline.js"></script>
+
 <!-- daterangepicker -->
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/moment/moment.min.js"></script>
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.js"></script>
@@ -81,9 +83,9 @@
 <!-- AdminLTE App -->
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/dist/js/demo.js"></script>
+<!-- <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/dist/js/demo.js"></script> -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/dist/js/pages/dashboard.js"></script>
+<!-- <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/dist/js/pages/dashboard.js"></script> -->
 
 
 
@@ -119,6 +121,7 @@
     </style>
 
 <body class="hold-transition sidebar-mini layout-navbar-fixed">
+
   <div id="hidden">
             <div id="progress-bar"></div><div id="loading"></div>
         </div>
