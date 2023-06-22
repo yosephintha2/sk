@@ -336,6 +336,7 @@ class Berkas extends CI_Controller {
         $this->load->helper('url');
 
         $list = $this->berkas->get_datatables($tipe); 
+        // echo $this->db->last_query();exit();
         $data = array();
         $no = $_POST['start'];
         foreach ($list as $berkas) {

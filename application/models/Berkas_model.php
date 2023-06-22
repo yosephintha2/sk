@@ -33,10 +33,27 @@ class Berkas_model extends CI_Model {
 			if !admin OR !hrd -> publish 1 ; id_user > 0
 		*/
 
+		if ($this->input->post('cari_nomor')) {
+            $this->db->where('b.nomor_berkas', $this->input->post('cari_nomor'));
+        }
+
+        if ($this->input->post('cari_sk')) {
+            $this->db->where('b.nama_berkas', $this->input->post('cari_sk'));
+        }
+
+        if ($this->input->post('cari_nama')) {
+            $this->db->where('u.nama', $this->input->post('cari_nama'));
+        }
+
+        if ($this->input->post('cari_tahun')) {
+            $this->db->where('YEAR(b.tanggal_berkas)', $this->input->post('cari_tahun'));
+        }
+
 		$this->db->select('b.*, j.jenis_berkas, j.tipe_berkas, u.nama ');
 		$this->db->from('berkas b');
 		$this->db->join('jenis_berkas j', 'j.id_jenis_berkas = b.id_jenis_berkas', 'left');
 		$this->db->join('user u', 'u.id_user = b.id_user', 'left');
+
 
 		$i = 0;
 	

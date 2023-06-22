@@ -53,7 +53,7 @@
                  <div class="col-3">
                     <div class="form-group">
                         <select class="form-control select2" id="cari_nama">
-                            <option id="">- Semua Guru/Karyawan -</option>
+                            <option value="">- Semua Guru/Karyawan -</option>
                             <?php
                             foreach ($user as $u) {
                                 echo "<option value='$u->id_user'>$u->nama</option>";
@@ -139,7 +139,7 @@ $(document).ready(function() {
             "type": "POST",
             "data": function(data) {
                     data.cari_nomor = $('#cari_nomor').val();
-                    data.cari_sk = $('#cari_tahun').val();
+                    data.cari_sk = $('#cari_sk').val();
                     data.cari_nama = $('#cari_nama').val();
                     data.cari_tahun = $('#cari_tahun').val();
                 }
@@ -160,28 +160,14 @@ $(document).ready(function() {
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
 
     $('#btn-filter').click(function() { //button filter event click
-            // table.ajax.reload();  //just reload table
-        table.DataTable( ).api().ajax.reload();
+        $('#tabel_sk').DataTable().ajax.reload()
+            //table.ajax.reload();  //just reload table
+        // table.DataTable( ).api().ajax.reload();
         
         });
 
         /*
-    //datatables
-    datatable = $("#tabel_sk").DataTable({
-      "responsive": true, 
-      "lengthChange": false, 
-      "autoWidth": false,
-      "searching": false,
-      "columnDefs": [
-            {
-                "targets": [4],
-                "visible": false
-            }
-        ]
-
-      // ,"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
+    //datatablesc
 
     $('#tabel_sk').DataTable({
         "responsive": true, 
