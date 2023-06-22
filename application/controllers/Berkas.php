@@ -38,12 +38,14 @@ class Berkas extends CI_Controller {
             $page = "sk_pribadi";
             $url = "berkas/pribadi_view";
             $tipe_berkas = 1;
+            $data['user'] = $this->form_option->list_user();
         }
 
         $data['title'] = $title;
         $data['subtitle'] = $subtitle;
         $data['page'] = $page;
         $data['data'] = $this->berkas->get_all($tipe);
+        $data['tipe'] = $tipe;
 
         // var_dump($data['data']);exit;
         // $data['tipe_sk'] = $this->form_option->tipe_berkas('');
@@ -328,5 +330,45 @@ class Berkas extends CI_Controller {
             echo json_encode($data);
             exit();
         }
+    }
+
+    public function ajax_list($tipe) {
+        $this->load->helper('url');
+
+        $list = $this->berkas->get_datatables($tipe); 
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $berkas) {
+            $no++;
+            $row = array();
+            $row[] = $berkas->no_berkas;
+            $row[] = $berkas->nama_berkas;
+            //if($tipe == "pribadi")
+            $row[] = "<center>".$berkas->tanggal_berkas."</center>";
+            $row[] = $berkas->nama;
+
+            if($berkas->publish == 0)
+                $row[] = "<td><center><small class='badge badge-secondary'>Hide</small></center></td>";
+            if($berkas->publish == 1)
+                $row[] = "<td><center><small class='badge badge-success'>Show</small></center></td>";
+
+            //add html for action
+            
+            $row[] = "<center><a class='btn btn-outline-dark btn-sm' href='javascript:void(0)' title='Download'><i class='fas fa-file-pdf'></i></a>
+                <a class='btn btn-outline-info btn-sm' href='javascript:void(0)' title='Edit' onclick='edit($berkas->id_berkas)'><i class='fas fa-edit'></i></a>
+                  <a class='btn btn-outline-danger btn-sm' href='javascript:void(0)' title='Hapus' onclick='del($berkas->id_berkas)'><i class='fas fa-trash-alt'></i></a></center>";
+
+            $data[] = $row;
+        }
+
+        $output = array(
+            "draw" => $_POST['draw'],
+            "recordsTotal" => $this->berkas->count_all($tipe),
+            "recordsFiltered" => $this->berkas->count_filtered($tipe),
+            "data" => $data,
+        );
+        //output to json format
+        
+        echo json_encode($output);
     }
 }

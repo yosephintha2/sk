@@ -26,6 +26,17 @@ class Form_option {
     }
 */
 
+    public function list_user() {
+        $CI = & get_instance();
+        $CI->load->model('db_model');
+        //$option[''] = 'Jenis Pertanyaan Kuisioner';
+        $query = $CI->db_model->get('user', '*', "");
+        // foreach ($query->result() as $data) {
+        //     $option[$data->jenis_berkas] = $data->jenis_berkas;
+        // }   
+        // return $option;
+        return $query->result(); 
+    }
 
      
 

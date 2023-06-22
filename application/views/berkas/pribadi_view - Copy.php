@@ -1,6 +1,10 @@
 <?php $this->load->view('layout/header');?>
+    <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+    
 
-  <!-- Content Wrapper. Contains page content -->
+
+    <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
@@ -19,47 +23,72 @@
       </div><!-- /.container-fluid -->
     </section>
 
-    <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        <div class="row">
           <div class="col-12">
             <div class="card">
               <div class="card-header">
-                <!-- <button type="button" class="btn btn-info"  onclick="add()">
-                  <i class="fas fa-plus"></i> Tambah
-                </button> -->
-                <a href="#" class="btn btn-info" role="button" aria-pressed="true"><i class="fas fa-plus"></i> Tambah</a>
-
-                <!-- <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modal-info">
-                  <i class="fas fa-plus"></i> Tambah
-                </button> -->
-                <!-- <h3 class="card-title">DataTable with default features</h3> -->
+                <div class="col-12">
+                    <!-- <p class="float-right"> -->
+                    <a href="#" class="btn btn-info" role="button" aria-pressed="true"><i class="fas fa-plus"></i> Tambah</a>
+                    <!-- </p> -->
+                    <!-- <br><br> -->
+                </div>
               </div>
               <!-- /.card-header -->
+              
               <div class="card-body">
-              	   <table id="tabel_sk" class="table table-bordered table-striped">
+                <div class="row">
+                  <div class="col-3">
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="cari_nomor" placeholder="- Nomor SK -">
+                    </div>
+                 </div>
+                 <div class="col-3">
+                    <div class="form-group">
+                        <input class="form-control" type="text" id="cari_sk" placeholder="- Nama SK -">
+                    </div>
+                 </div>
+                 <div class="col-4">
+                    <div class="form-group">
+                        <select class="form-control select2" id="cari_nama">
+                            <option id="">- Semua Guru/Karyawan -</option>
+                            <?php
+                            foreach ($user as $u) {
+                                echo "<option value='$u->id_user'>$u->nama</option>";
+                            }
+                            ?>
+                        </select>
+                    </div>
+                 </div>
+                 <div class="col-2">
+                    <input class="date-own form-control" type="text" id="cari_tahun" placeholder="- Tahun SK -">
+                 </div>
+             </div>
+                <table id="tabel_sk" class="table table-bordered table-striped">
                   <thead>
                   <tr>
-                    <th class="text-center">No</th>
+                    <!-- <th class="text-center">No</th> -->
                     <th class="text-center">No. SK</th>
-                    <th class="text-center">SK</th>
+                    <th class="text-center">Nama SK</th>
                     <th class="text-center">Tanggal SK</th>
-                    <th class="text-center">Nama</th>
+                    <th class="text-center">Nama Guru/Karyawan</th>
                     <th class="text-center">Publish</th>
                     <th class="text-center">Aksi</th>
                   </tr>
                   </thead>
                   <tbody>
-                  	 <?php
-                  	 $i = 0;
+                     <?php
+                     $i = 0;
         foreach ($data as $r) {
-        	$i++;
+            $i++;
             //$tipe_berkas = $this->conversion->tipe_berkas($r->tipe_berkas);
 
             // echo isset($r->keterangan) ? $r->keterangan:'-';exit();
 
           echo "<tr>";
-          echo "<td class='text-center'>$i</td>";
+          // echo "<td class='text-center'>$i</td>";
           echo "<td>$r->no_berkas</td>";
           echo "<td>$r->nama_berkas</td>";
           echo "<td>$r->tanggal_berkas</td>";
@@ -73,7 +102,7 @@
           echo "<td class='text-center'>
                 <a class='btn btn-outline-dark btn-sm' href='javascript:void(0)' title='Download'><i class='fas fa-file-pdf'></i></a>
                 <a class='btn btn-outline-info btn-sm' href='javascript:void(0)' title='Edit' onclick='edit($r->id_berkas)'><i class='fas fa-edit'></i></a>
-				  <a class='btn btn-outline-danger btn-sm' href='javascript:void(0)' title='Hapus' onclick='del($r->id_berkas)'><i class='fas fa-trash-alt'></i></a>
+                  <a class='btn btn-outline-danger btn-sm' href='javascript:void(0)' title='Hapus' onclick='del($r->id_berkas)'><i class='fas fa-trash-alt'></i></a>
           </td>";
           echo "</tr>";
         }
@@ -81,19 +110,13 @@
                   </tbody>
                 </table>
               </div>
-              <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
           </div>
-          <!-- /.col -->
-        </div>
-        <!-- /.row -->
+
+          </div>
       </div>
-      <!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
+</section>
+   </div>
 
   
    <div class="modal fade" id="modal_form">
@@ -140,14 +163,115 @@
         </div>
         <!-- /.modal-dialog -->
       </div>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script>var $j = jQuery.noConflict();</script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>   -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
+<script type="text/javascript">
+    
+    jQuery.noConflict();
 
-      <script type="text/javascript">
+       $(function () {
+     jQuery('.date-own').datepicker({
+         minViewMode: 2,
+         autoclose: true,
+         format: 'yyyy'
+       })(jQuery);
+ });
 
+    
+</script>
 
+<script type="text/javascript">
 
 var save_method; //for save method string
-var table;
+var datatable;
 var base_url = '<?php echo base_url();?>';
+
+$(document).ready(function() {
+
+    //datatables
+    datatable = $("#tabel_sk").DataTable({
+      "responsive": true, 
+      "lengthChange": false, 
+      "autoWidth": false,
+      "searching": false,
+      "columnDefs": [
+            {
+                "targets": [4],
+                "visible": false
+            }
+        ]
+
+      // ,"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+
+/*
+    $('#tabel_sk').DataTable({
+        "responsive": true, 
+      "lengthChange": false, 
+      "autoWidth": false,
+      "searching": false,});
+        function filterData () {
+            $('#tabel_sk').DataTable().search(
+                $('#cari_nomor').val()
+                ).draw();
+        }
+        
+        $('#cari_nomor').on('change', function () {
+            filterData();
+        });
+*/
+
+    $('#cari_nama').on('change', function(e){
+      var status = $(this).val();
+      $('#cari_nama').val(status)
+      console.log(status)
+      //dataTable.column(6).search('\\s' + status + '\\s', true, false, true).draw();
+      datatable.column(4).search(status).draw();
+    })
+
+    $('#cari_tahun').on('click', function(e){
+      var status = $(this).val();
+      $('#cari_tahun').val(status)
+      console.log(status)
+      //dataTable.column(6).search('\\s' + status + '\\s', true, false, true).draw();
+      datatable.column(3).search(status).draw();
+    })
+
+    $('#cari_sk').on('change', function(e){
+      var status = $(this).val();
+      $('#cari_sk').val(status)
+      console.log(status)
+      //dataTable.column(6).search('\\s' + status + '\\s', true, false, true).draw();
+      datatable.column(2).search(status).draw();
+    })
+
+     $('#cari_nomor').on('change', function(e){
+      var status = $(this).val();
+      $('#cari_nomor').val(status)
+      console.log(status)
+      //dataTable.column(6).search('\\s' + status + '\\s', true, false, true).draw();
+      datatable.column(1).search(status).draw();
+    })
+
+
+    // $("input").change(function(){
+    //     $(this).parent().parent().removeClass('has-error');
+    //     $(this).next().empty();
+    // });
+
+    // $("select").change(function(){
+    //     $(this).parent().parent().removeClass('has-error');
+    //     $(this).next().empty();
+    // });
+
+    // $("textarea").change(function(){
+    //     $(this).parent().parent().removeClass('has-error');
+    //     $(this).next().empty();
+    // });
+  });
 
 $(function () {
     //Initialize Select2 Elements
@@ -156,36 +280,9 @@ $(function () {
     //Initialize Select2 Elements
     $('.select2bs4').select2({
       theme: 'bootstrap4'
-    })
-
-  })
-
-$(document).ready(function() {
-
-    //datatables
-    table = $("#tabel_sk").DataTable({
-      "responsive": true, 
-      "lengthChange": false, 
-      "autoWidth": false,
-
-      // ,"buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
-    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-
-    $("input").change(function(){
-        $(this).parent().parent().removeClass('has-error');
-        $(this).next().empty();
-    });
-
-    $("select").change(function(){
-        $(this).parent().parent().removeClass('has-error');
-        $(this).next().empty();
-    });
-
-    $("textarea").change(function(){
-        $(this).parent().parent().removeClass('has-error');
-        $(this).next().empty();
     });
   });
+
 
 function add(){
     save_method = 'add';
@@ -303,7 +400,7 @@ function del(id){
 }
 
 function reload_table(){
-    table.ajax.reload(); //reload datatable ajax 
+    datatable.ajax.reload(); //reload datatable ajax 
 }
 
 </script>

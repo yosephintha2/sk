@@ -38,6 +38,7 @@
 
    <!-- jQuery -->
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/jquery/jquery.min.js"></script>
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.js"></script> -->
 <!-- jQuery UI 1.11.4 -->
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -55,12 +56,14 @@
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/sparklines/sparkline.js"></script>
 
 <!-- daterangepicker -->
-<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/moment/moment.min.js"></script>
+<!-- <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/moment/moment.min.js"></script>
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/daterangepicker/daterangepicker.js"></script>
-
+ -->
 <!-- DataTables  & Plugins -->
-<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+<!-- <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables/jquery.dataTables.min.js"></script> -->
+<!-- <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script> -->
+<script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
 <script src="<?php echo base_url() ?>/assets/AdminLTE-3.2.0/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>

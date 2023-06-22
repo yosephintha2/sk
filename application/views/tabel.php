@@ -1,7 +1,13 @@
 <?php $this->load->view('layout/header');?>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.js"></script>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+
+
 
  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -54,12 +60,19 @@
               </div>
               <div class="card-body">
                 <!-- Date -->
-                <div class="form-group">
-                  
-                  <input type='text' class="form-control" id='datetimepicker9' /> 
-                    <span class="input-group-addon"> 
-                            <span class="glyphicon glyphicon-calendar"></span>
-                    </span>
+               <div class="container text-center">
+
+
+     <h2>Bootstrap - year picker only example</h2>
+     <input class="date-own form-control" style="width: 300px;" type="text">
+
+
+  <script type="text/javascript">
+      $('.date-own').datepicker({
+         minViewMode: 2,
+         format: 'yyyy'
+       });
+  </script>
 
                 </div>
  
@@ -76,29 +89,7 @@
 <!-- ./wrapper -->
 
 <script type="text/javascript">
-  $(function () {
-    $('#datetimepicker9').datepicker({
-      viewMode: 'years'
-    });
-  });
- </script>
- 
-<script>
-  $(function () {
-    //Initialize Select2 Elements
-    $('.select2').select2()
-
-    //Initialize Select2 Elements
-    $('.select2bs4').select2({
-      theme: 'bootstrap4'
-    })
-
-
-    //Date picker
-    $('#reservationdate').datetimepicker({
-        format: 'L'
-    });
-  })
+  
 </script>
 </body>
 </html>
