@@ -23,7 +23,7 @@ class Setting extends CI_Controller {
         $this->load->helper('url');
     }
 
-    public function jenis_sk(){
+    public function jenis_sk() {
         $data['title'] = "Setting - Jenis SK";
         $data['subtitle'] = "Jenis SK";
         $data['page'] = "jenis_sk";
@@ -32,7 +32,7 @@ class Setting extends CI_Controller {
         $this->load->view('setting/jenis_sk', $data);
     }
 
-    public function tipe_pengguna(){
+    public function tipe_pengguna() {
         $data['title'] = "Setting - Tipe Pengguna";
         $data['subtitle'] = "Tipe Pengguna";
         $data['page'] = "tipe_pengguna";
@@ -41,7 +41,7 @@ class Setting extends CI_Controller {
         $this->load->view('setting/tipe_pengguna', $data);
     }
 
-    public function jatah_cuti(){
+    public function jatah_cuti() {
         $data['title'] = "Setting - Jatah Cuti";
         $data['subtitle'] = "Jatah Cuti";
         $data['page'] = "jatah_cuti";
@@ -49,46 +49,46 @@ class Setting extends CI_Controller {
     }
 
     public function ajax_edit($id) {
-      $form = $_POST['form'];
-        if ($form == 'tipe_pengguna'){
+        $form = $_POST['form'];
+        if ($form == 'tipe_pengguna') {
             $tabel = 'tipe_user';
             $tabel_id = 'id_tipe_user';
-        }   
+        }
 
-        if ($form == 'jenis_sk'){
+        if ($form == 'jenis_sk') {
             $tabel = 'jenis_berkas';
             $tabel_id = 'id_jenis_berkas';
-        } 
+        }
 
-        if ($form == 'jatah_cuti'){
+        if ($form == 'jatah_cuti') {
             $id = 1;
             $tabel = 'config';
             $tabel_id = 'id_config';
-        } 
+        }
 
         $data = $this->setting->get_by_id($tabel, $tabel_id, $id);
-       // $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
+        // $data->dob = ($data->dob == '0000-00-00') ? '' : $data->dob; // if 0000-00-00 set tu empty for datepicker compatibility
         echo json_encode($data);
     }
 
     public function ajax_add() {
         $this->_validate($this->input->post('form'));
 
-        if ($this->input->post('form') == 'tipe_pengguna'){
+        if ($this->input->post('form') == 'tipe_pengguna') {
             $data = array(
                 'tipe_user' => $this->input->post('tipe_pengguna')
             );
             $tabel = 'tipe_user';
-        }   
+        }
 
-        if ($this->input->post('form') == 'jenis_sk'){
+        if ($this->input->post('form') == 'jenis_sk') {
             $data = array(
                 'jenis_berkas' => $this->input->post('jenis_sk'),
                 'tipe_berkas' => $this->input->post('tipe_sk'),
                 'keterangan' => $this->input->post('keterangan')
             );
             $tabel = 'jenis_berkas';
-        } 
+        }
 
         $insert = $this->setting->save($tabel, $data);
 
@@ -97,7 +97,7 @@ class Setting extends CI_Controller {
 
     public function ajax_update() {
         $this->_validate($this->input->post('form'));
-        if ($this->input->post('form') == 'tipe_pengguna'){
+        if ($this->input->post('form') == 'tipe_pengguna') {
             $data = array(
                 'tipe_user' => $this->input->post('tipe_pengguna')
             );
@@ -105,9 +105,9 @@ class Setting extends CI_Controller {
                 'id_tipe_user' => $this->input->post('id')
             );
             $tabel = 'tipe_user';
-        }   
+        }
 
-        if ($this->input->post('form') == 'jenis_sk'){
+        if ($this->input->post('form') == 'jenis_sk') {
             $data = array(
                 'jenis_berkas' => $this->input->post('jenis_sk'),
                 'tipe_berkas' => $this->input->post('tipe_sk'),
@@ -117,9 +117,9 @@ class Setting extends CI_Controller {
                 'id_jenis_berkas' => $this->input->post('id')
             );
             $tabel = 'jenis_berkas';
-        } 
+        }
 
-        if ($this->input->post('form') == 'jatah_cuti'){
+        if ($this->input->post('form') == 'jatah_cuti') {
             $data = array(
                 'jatah_cuti' => $this->input->post('jatah_cuti')
             );
@@ -127,7 +127,7 @@ class Setting extends CI_Controller {
                 'id_config' => 1
             );
             $tabel = 'config';
-        } 
+        }
 
         $this->setting->update($tabel, $where, $data);
         echo json_encode(array("status" => TRUE));
@@ -135,18 +135,18 @@ class Setting extends CI_Controller {
 
     public function ajax_delete($id) {
         $form = $_POST['form'];
-        if ($form == 'tipe_pengguna'){
+        if ($form == 'tipe_pengguna') {
             $tabel = 'tipe_user';
             $tabel_id = 'id_tipe_user';
-        }   
+        }
 
-        if ($form == 'jenis_sk'){
+        if ($form == 'jenis_sk') {
             $tabel = 'jenis_berkas';
             $tabel_id = 'id_jenis_berkas';
-        } 
+        }
         //exit();
         // $setting = $this->setting->get_by_id('tipe_user','id_tipe_user', $id);
-        
+
         $this->setting->delete_by_id($tabel, $tabel_id, $id);
         echo json_encode(array("status" => TRUE));
     }
@@ -157,7 +157,7 @@ class Setting extends CI_Controller {
         $data['inputerror'] = array();
         $data['status'] = TRUE;
 
-        if ($form == 'tipe_pengguna'){
+        if ($form == 'tipe_pengguna') {
             if ($this->input->post('tipe_pengguna') == '') {
                 $data['inputerror'][] = 'tipe_pengguna';
                 $data['error_string'][] = 'Tipe Pengguna is required';
@@ -165,21 +165,21 @@ class Setting extends CI_Controller {
             }
         }
 
-        if ($form == 'jenis_sk'){
+        if ($form == 'jenis_sk') {
             if ($this->input->post('jenis_sk') == '') {
-               $data['inputerror'][] = 'jenis_sk';
-               $data['error_string'][] = 'Jenis SK is required';
-               $data['status'] = FALSE;
+                $data['inputerror'][] = 'jenis_sk';
+                $data['error_string'][] = 'Jenis SK is required';
+                $data['status'] = FALSE;
             }
 
             if ($this->input->post('tipe_sk') == '') {
-               $data['inputerror'][] = 'tipe_sk';
-               $data['error_string'][] = 'Tipe SK is required';
-               $data['status'] = FALSE;
+                $data['inputerror'][] = 'tipe_sk';
+                $data['error_string'][] = 'Tipe SK is required';
+                $data['status'] = FALSE;
             }
         }
 
-        if ($form == 'jatah_cuti'){
+        if ($form == 'jatah_cuti') {
             if ($this->input->post('jatah_cuti') == '') {
                 $data['inputerror'][] = 'jatah_cuti';
                 $data['error_string'][] = 'jatah_cuti is required';
@@ -192,4 +192,5 @@ class Setting extends CI_Controller {
             exit();
         }
     }
+
 }
