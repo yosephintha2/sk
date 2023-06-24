@@ -54,11 +54,11 @@ class Berkas extends CI_Controller {
     public function tambah($tipe) {
         $title = $subtitle = $page = "";
         if ($tipe == "bersama") {
-            $title = $subtitle = "SK Bersama";
+            $title = $subtitle = "SK Bersama - Tambah";
             $page = "sk_bersama";
             $url = "berkas/bersama_tambah";
         } elseif ($tipe == "pribadi") {
-            $title = $subtitle = "SK Pribadi";
+            $title = $subtitle = "SK Pribadi - Tambah";
             $page = "sk_pribadi";
             $url = "berkas/pribadi_tambah";
         }

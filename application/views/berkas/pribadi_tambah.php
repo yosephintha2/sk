@@ -30,14 +30,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card">
-                        <div class="card-header">
-                            <div class="col-12">
-                                <!-- <p class="float-right"> -->
+                         <!-- <div class="card-header">
+                           <div class="col-12">
+                                <p class="float-right">
                                 <a href="<?php echo site_url('berkas/tambah/') . $tipe ?>" class="btn btn-info" role="button" aria-pressed="true"><i class="fas fa-plus"></i> Tambah</a>
-                                <!-- </p> -->
-                                <!-- <br><br> -->
-                            </div>
-                        </div>
+                                </p>
+                        
+                            </div> 
+                        </div>-->
                         <!-- /.card-header -->
 
                         <!-- form start -->
@@ -95,11 +95,18 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="form-group row">
+                                    <label for="file_sk" class="col-sm-4 col-form-label">File SK</label>
+                                    <div class="col-sm-8">
+                                        <input type="file" class="form-control" accept="application/pdf" id="file_sk" name="file_sk" required placeholder="">
+                                    </div>
+                                </div>
                             </div>
                             <!-- /.card-body -->
                             <div class="card-footer">
-                                <button type="submit" class="btn btn-info">Sign in</button>
-                                <button type="submit" class="btn btn-default float-right">Cancel</button>
+                                <button type="button" id="btnSave" onclick="save()" class="btn btn-info" aria-pressed="true">Simpan</button>
+                                <!-- <button type="button" class="btn btn-danger">Batal</button> -->
+                                <a href="<?php echo site_url('berkas/home/') . $tipe ?>" class="btn btn-danger" role="button" aria-pressed="true">Batal</a>
                             </div>
                             <!-- /.card-footer -->
                         </form>
@@ -166,86 +173,37 @@
 
 
     function save() {
-        $('#btnSave').text('saving...'); //change button text
-        $('#btnSave').attr('disabled', true); //set button disable 
-        var url;
-
-        if (save_method == 'add') {
-            url = "<?php echo site_url('setting/ajax_add') ?>";
-        } else {
-            url = "<?php echo site_url('setting/ajax_update') ?>";
-        }
-
         // ajax adding data to database
+        $("#loading").show();
 
         var formData = new FormData($('#form')[0]);
         $.ajax({
-            url: url,
+            url: "<?php echo site_url('berkas/ajax_add') ?>",
             type: "POST",
             data: formData,
             contentType: false,
             processData: false,
             dataType: "JSON",
             success: function (data) {
-
+                $("#loading").hide();
                 if (data.status) {//if success close modal and reload ajax table
-                    $('#modal_form').modal('hide');
                     toastr.success('Success adding / update data');
                     setTimeout(function () {
-                        location.reload();
+                        // location.reload();
+                        location.href = '<?php echo site_url('berkas/home/').$tipe ?>';
                     }, 1000);
-                    //reload_table();
-                    //location.reload();
                 } else {
-                    for (var i = 0; i < data.inputerror.length; i++) {
-                        // $('[name="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
-                        $('[name="' + data.inputerror[i] + '"]').parent().addClass('has-error');
-                        $('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[i]); //select span help-block class set text error string
-                    }
+                    toastr.danger('Error adding / update data');
                 }
-                $('#btnSave').text('Save'); //change button text
-                $('#btnSave').attr('disabled', false); //set button enable 
-
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 //alert('Error adding / update data');
+                $("#loading").hide();
                 toastr.danger('Error adding / update data');
-                $('#btnSave').text('save'); //change button text
-                $('#btnSave').attr('disabled', false); //set button enable 
-
             }
         });
     }
 
-    function del(id) {
-        if (confirm('Are you sure delete this data?')) {
-            // ajax delete data to database
-            $.ajax({
-                url: "<?php echo site_url('setting/ajax_delete') ?>/" + id,
-                type: "POST",
-                data: {form: 'jenis_sk'},
-                dataType: "JSON",
-                success: function (data) {
-                    //if success reload ajax table
-                    $('#modal_form').modal('hide');
-                    toastr.success('Success deleting data');
-                    setTimeout(function () {
-                        location.reload();
-                    }, 1000);
-                    //reload_table();
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    // alert('Error deleting data');
-                    toastr.danger('Error deleting data');
-                }
-            });
-
-        }
-    }
-
-    function reload_table() {
-        datatable.ajax.reload(); //reload datatable ajax 
-    }
 
 </script>
 <?php $this->load->view('layout/footer'); ?> 
