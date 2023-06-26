@@ -41,25 +41,28 @@
                         <!-- /.card-header -->
 
                         <!-- form start -->
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" id="form">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <input type="hidden" id="" name="form" value="<?php echo $tipe ?>">
                                     <label for="nomor_sk" class="col-sm-4 col-form-label">Nomor SK</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="nomor_sk" name="nomor_sk" required placeholder="">
+                                        <span class="help-block"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="nama_sk" class="col-sm-4 col-form-label">Nama SK</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="form-control" id="nama_sk" name="nama_sk" required placeholder="">
+                                        <span class="help-block"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="tanggal_sk" class="col-sm-4 col-form-label">Tanggal SK</label>
                                     <div class="col-sm-8">
                                         <input type="text" class="date-own form-control" id="tanggal_sk" name="tanggal_sk" required placeholder="">
+                                        <span class="help-block"></span>
                                     </div>
                                     <!-- 
                                                         <div class="input-group date" id="reservationdate" data-target-input="nearest">
@@ -74,13 +77,14 @@
                                     <div class="col-sm-8">
                                         <div class="form-group">
                                         <select class="form-control select2" id="nama" name="nama" required="">
-                                            <option value="">- Guru/Karyawan -</option>
+                                            <option value="">Pilih Guru/Karyawan</option>
                                             <?php
                                             foreach ($user as $u) {
                                                 echo "<option value='$u->id_user'>$u->nama</option>";
                                             }
                                             ?>
                                         </select>
+                                        <span class="help-block"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -92,6 +96,7 @@
                                             <option value="1">Ya</option>
                                             <option value="0">Tidak</option>
                                         </select>
+                                        <span class="help-block"></span>
                                         </div>
                                     </div>
                                 </div>
@@ -99,6 +104,7 @@
                                     <label for="file_sk" class="col-sm-4 col-form-label">File SK</label>
                                     <div class="col-sm-8">
                                         <input type="file" class="form-control" accept="application/pdf" id="file_sk" name="file_sk" required placeholder="">
+                                        <span class="help-block"></span>
                                     </div>
                                 </div>
                             </div>
@@ -154,7 +160,26 @@
     $(document).ready(function () {
 
 
-    });
+        $("input").change(function () {
+            $(this).parent().parent().removeClass('has-error');
+            $(this).next().empty();
+        });
+
+        $("select2").change(function () {
+            $(this).parent().parent().removeClass('has-error');
+            $(this).next().empty();
+        });
+
+        $("textarea").change(function () {
+            $(this).parent().parent().removeClass('has-error');
+            $(this).next().empty();
+        });
+
+    //$("#hidden").show();
+    // $("#form").on('submit', function(e){
+    //         e.preventDefault();
+    //     }
+    // });
 
     $(function () {
         //Initialize Select2 Elements
@@ -165,27 +190,34 @@
             theme: 'bootstrap4'
         });
 
-        //Date picker
-        $('#reservation').datetimepicker({
-            format: 'L'
-        });
     });
-
+});
 
     function save() {
         // ajax adding data to database
-        $("#loading").show();
+        $("#hidden").show();
 
+        // $('#btnSave').attr('disabled', true); //set button disable 
+
+        // var formData = new FormData($('#form')[0]);
+        var formData = $("#form");
+
+    if (formData[0].checkValidity() === false) {
+        $("#hidden").hide();
+      event.preventDefault()
+      event.stopPropagation()
+    } else {
         var formData = new FormData($('#form')[0]);
         $.ajax({
             url: "<?php echo site_url('berkas/ajax_add') ?>",
             type: "POST",
+            // data: formData,
             data: formData,
             contentType: false,
             processData: false,
             dataType: "JSON",
             success: function (data) {
-                $("#loading").hide();
+                $("#hidden").hide();
                 if (data.status) {//if success close modal and reload ajax table
                     toastr.success('Success adding / update data');
                     setTimeout(function () {
@@ -193,16 +225,26 @@
                         location.href = '<?php echo site_url('berkas/home/').$tipe ?>';
                     }, 1000);
                 } else {
-                    toastr.danger('Error adding / update data');
+                    //toastr.error('Error adding / update data');
+                    for (var i = 0; i < data.inputerror.length; i++) {
+                        // $('[name="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
+                        $('[name="' + data.inputerror[i] + '"]').parent().addClass('has-error');
+                        $('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[i]); //select span help-block class set text error string
+                    }
                 }
+                // $('#btnSave').attr('disabled', false); //set button enable 
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 //alert('Error adding / update data');
-                $("#loading").hide();
-                toastr.danger('Error adding / update data');
+                $("#hidden").hide();
+                $('#btnSave').attr('disabled', false); //set button enable 
+                toastr.error('Error adding / update data');
             }
         });
+        
     }
+     formData.addClass('was-validated');
+}
 
 
 </script>

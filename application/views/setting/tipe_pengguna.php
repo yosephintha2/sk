@@ -157,7 +157,7 @@
             error: function (jqXHR, textStatus, errorThrown)
             {
                 // alert('Error get data from ajax');
-                toastr.danger('Error get data from ajax');
+                toastr.error('Error get data from ajax');
             }
         });
     }
@@ -206,7 +206,7 @@
             },
             error: function (jqXHR, textStatus, errorThrown) {
                 //alert('Error adding / update data');
-                toastr.danger('Error adding / update data');
+                toastr.error('Error adding / update data');
                 $('#btnSave').text('save'); //change button text
                 $('#btnSave').attr('disabled', false); //set button enable 
 
@@ -233,7 +233,7 @@
                 },
                 error: function (jqXHR, textStatus, errorThrown) {
                     // alert('Error deleting data');
-                    toastr.danger('Error deleting data');
+                    toastr.error('Error deleting data');
                 }
             });
 

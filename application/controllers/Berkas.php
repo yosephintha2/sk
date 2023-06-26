@@ -85,7 +85,7 @@ class Berkas extends CI_Controller {
             $tabel = 'jenis_berkas';
         }
 
-        if (!empty($_FILES['files']['name'])) {
+        if (!empty($_FILES['file_sk']['name'])) {
             $upload = $this->_do_upload();
             $data['url_berkas'] = $upload;
         }
@@ -133,7 +133,7 @@ class Berkas extends CI_Controller {
             $data['url_berkas'] = '';
         }
 
-        if (!empty($_FILES['file']['name'])) {
+        if (!empty($_FILES['file_sk']['name'])) {
             $upload = $this->_do_upload();
 
             //delete file
@@ -160,8 +160,8 @@ class Berkas extends CI_Controller {
     }
 
     private function _do_upload() {
-        $config['upload_path'] = 'upload/';
-        /* $config['allowed_types'] = 'gif|jpg|png';
+        /* $config['upload_path'] = 'upload/';
+          $config['allowed_types'] = 'gif|jpg|png';
           $config['max_size'] = 100; //set max size allowed in Kilobyte
           $config['max_width'] = 1000; // set max width image allowed
           $config['max_height'] = 1000; // set max height allowed
@@ -169,13 +169,15 @@ class Berkas extends CI_Controller {
          */
 
         // set path to store uploaded files
-        //$config['upload_path'] = './uploads/'; // set allowed file types
+        $config['upload_path'] = './upload/'; // set allowed file types
         $config['allowed_types'] = 'pdf'; // set upload limit, set 0 for no limit
         $config['max_size'] = 0;
+        // var_dump($config['upload_path']);exit();
 
         $this->load->library('upload', $config);
+$this->upload->initialize($config);
 
-        if (!$this->upload->do_upload('files')) { //upload and validate
+        if (!$this->upload->do_upload('file_sk')) { //upload and validate
             $data['inputerror'][] = 'files';
             $data['error_string'][] = 'Upload error: ' . $this->upload->display_errors('', ''); //show ajax error
             $data['status'] = FALSE;
@@ -296,35 +298,25 @@ class Berkas extends CI_Controller {
         $data['inputerror'] = array();
         $data['status'] = TRUE;
 
-        if ($form == 'tipe_pengguna') {
-            if ($this->input->post('tipe_pengguna') == '') {
-                $data['inputerror'][] = 'tipe_pengguna';
-                $data['error_string'][] = 'Tipe Pengguna is required';
+        if ($form == 'pribadi') {
+            if ($this->input->post('nama') == '') {
+                $data['inputerror'][] = 'Nama';
+                $data['error_string'][] = 'Nama Guru/Karyawan is required';
                 $data['status'] = FALSE;
             }
         }
 
-        if ($form == 'jenis_sk') {
-            if ($this->input->post('jenis_sk') == '') {
-                $data['inputerror'][] = 'jenis_sk';
-                $data['error_string'][] = 'Jenis SK is required';
-                $data['status'] = FALSE;
-            }
-
-            if ($this->input->post('tipe_sk') == '') {
-                $data['inputerror'][] = 'tipe_sk';
-                $data['error_string'][] = 'Tipe SK is required';
-                $data['status'] = FALSE;
-            }
+        if (empty($_FILES['file_sk']['name'])) {
+             $data['inputerror'][] = 'File';
+             $data['error_string'][] = 'File is required';
+             $data['status'] = FALSE;
         }
 
-        if ($form == 'jatah_cuti') {
-            if ($this->input->post('jatah_cuti') == '') {
-                $data['inputerror'][] = 'jatah_cuti';
-                $data['error_string'][] = 'jatah_cuti is required';
-                $data['status'] = FALSE;
-            }
-        }
+        // if ($this->input->post('file') == '') {
+        //         $data['inputerror'][] = 'File';
+        //         $data['error_string'][] = 'File is required';
+        //         $data['status'] = FALSE;
+        //     }
 
         if ($data['status'] === FALSE) {
             echo json_encode($data);

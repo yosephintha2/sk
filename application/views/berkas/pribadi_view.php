@@ -123,7 +123,7 @@
     var base_url = '<?php echo base_url(); ?>';
 
     $(document).ready(function () {
-
+        
         table = $('#tabel_sk').DataTable({
 
             "processing": true, //Feature control the processing indicator.
