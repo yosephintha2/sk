@@ -3,9 +3,46 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.css" rel="stylesheet">
 
 
-<style>
+<style type="text/css">
+        /*.help-block{color: red;}*/
+        .has-error .checkbox,.has-error .checkbox-inline,.has-error .control-label,.has-error .help-block,.has-error .radio,.has-error .radio-inline,.has-error.checkbox label,.has-error.checkbox-inline label,.has-error.radio label,.has-error.radio-inline label{
+            color:#a94442
+        }
 
-</style>
+       .has-error .select2-container--default .select2-selection--single {
+    border: 1px solid #dc3545;
+    padding: 0.46875rem 0.75rem;
+    height: calc(2.25rem + 2px);
+}
+    /*
+        .has-error{
+            border-color:#a94442;
+            -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);
+            box-shadow:inset 0 1px 1px rgba(0,0,0,.075);
+                display: block;
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    box-shadow: inset 0 0 0 transparent;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;*/
+        }
+
+        .has-error .form-control:focus{
+            border-color:#843534;
+            -webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #ce8483;
+            box-shadow:inset 0 1px 1px rgba(0,0,0,.075),0 0 6px #ce8483
+        }
+    </style>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -74,7 +111,7 @@
                                     -->                  </div>
                                 <div class="form-group row">
                                     <label for="nama" class="col-sm-4 col-form-label">Nama Guru/Karyawan</label>
-                                    <div class="col-sm-8">
+                                    <div class="col-sm-8 slct">
                                         <div class="form-group">
                                         <select class="form-control select2" id="nama" name="nama" required="">
                                             <option value="">Pilih Guru/Karyawan</option>
@@ -159,6 +196,10 @@
 
     $(document).ready(function () {
 
+        $(".slct").change(function () {
+            $(this).removeClass('has-error');
+            $(this).next().empty();
+        });
 
         $("input").change(function () {
             $(this).parent().parent().removeClass('has-error');
@@ -196,7 +237,7 @@
     function save() {
         // ajax adding data to database
         $("#hidden").show();
-
+        $('.form-group').removeClass('has-error'); // clear error class
         // $('#btnSave').attr('disabled', true); //set button disable 
 
         // var formData = new FormData($('#form')[0]);
@@ -204,6 +245,11 @@
 
     if (formData[0].checkValidity() === false) {
         $("#hidden").hide();
+        if($('#nama').val()==""){
+            // alert("vvv");
+            $('.slct').addClass('has-error');
+            //return false;
+        }
       event.preventDefault()
       event.stopPropagation()
     } else {
@@ -227,7 +273,7 @@
                 } else {
                     //toastr.error('Error adding / update data');
                     for (var i = 0; i < data.inputerror.length; i++) {
-                        // $('[name="'+data.inputerror[i]+'"]').parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
+                        $('[name="'+data.inputerror[i]+'"]').parent().parent().parent().addClass('has-error'); //select parent twice to select div form-group class and add has-error class
                         $('[name="' + data.inputerror[i] + '"]').parent().addClass('has-error');
                         $('[name="' + data.inputerror[i] + '"]').next().text(data.error_string[i]); //select span help-block class set text error string
                     }

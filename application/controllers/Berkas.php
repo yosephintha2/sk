@@ -77,12 +77,14 @@ class Berkas extends CI_Controller {
         $this->_validate($this->input->post('form'));
 
         if ($this->input->post('form') == 'pribadi') {
-            $data = array(
-                'jenis_berkas' => $this->input->post('jenis_sk'),
-                'tipe_berkas' => $this->input->post('tipe_sk'),
-                'keterangan' => $this->input->post('keterangan')
+             $data = array(
+                'no_berkas' => $this->input->post('nomor_sk'),
+                'nama_berkas' => $this->input->post('nama_sk'),
+                'id_user' => $this->input->post('nama'),
+                'tanggal_berkas' => $this->input->post('tanggal_sk'),
+                'publish' => $this->input->post('publish'),
             );
-            $tabel = 'jenis_berkas';
+            $tabel = 'berkas';
         }
 
         if (!empty($_FILES['file_sk']['name'])) {
@@ -120,11 +122,13 @@ class Berkas extends CI_Controller {
 
         if ($this->input->post('form') == 'pribadi') {
             $data = array(
-                'jenis_berkas' => $this->input->post('jenis_sk'),
-                'tipe_berkas' => $this->input->post('tipe_sk'),
-                'keterangan' => $this->input->post('keterangan')
+                'no_berkas' => $this->input->post('nomor_sk'),
+                'nama_berkas' => $this->input->post('nama_sk'),
+                'id_user' => $this->input->post('nama'),
+                'tanggal_berkas' => $this->input->post('tanggal_sk'),
+                'publish' => $this->input->post('publish'),
             );
-            $tabel = 'jenis_berkas';
+            $tabel = 'berkas';
         }
 
         if ($this->input->post('remove')) { // if remove photo checked
