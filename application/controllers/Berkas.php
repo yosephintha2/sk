@@ -40,6 +40,7 @@ class Berkas extends CI_Controller {
             $data['user'] = $this->form_option->list_user();
         }
 
+        $data['jenis'] = $this->form_option->list_jenis_berkas($tipe_berkas);
         $data['title'] = $title;
         $data['subtitle'] = $subtitle;
         $data['page'] = $page;
@@ -57,13 +58,16 @@ class Berkas extends CI_Controller {
             $title = $subtitle = "SK Bersama - Tambah";
             $page = "sk_bersama";
             $url = "berkas/bersama_tambah";
+            $tipe_berkas = 0;
         } elseif ($tipe == "pribadi") {
             $title = $subtitle = "SK Pribadi - Tambah";
             $page = "sk_pribadi";
             $url = "berkas/pribadi_tambah";
+            $tipe_berkas = 1;
         }
 
         $data['user'] = $this->form_option->list_user();
+        $data['jenis'] = $this->form_option->list_jenis_berkas($tipe_berkas);
         $data['tipe'] = $tipe;
         $data['title'] = $title;
         $data['subtitle'] = $subtitle;
@@ -76,16 +80,20 @@ class Berkas extends CI_Controller {
     public function ajax_add() {
         $this->_validate($this->input->post('form'));
 
-        if ($this->input->post('form') == 'pribadi') {
-             $data = array(
+        $data = array(
                 'no_berkas' => $this->input->post('nomor_sk'),
                 'nama_berkas' => $this->input->post('nama_sk'),
-                'id_user' => $this->input->post('nama'),
+                'id_jenis_berkas' => $this->input->post('jenis_sk'),
+                'keterangan_berkas' => $this->input->post('keterangan_sk'),
                 'tanggal_berkas' => $this->input->post('tanggal_sk'),
                 'publish' => $this->input->post('publish'),
             );
-            $tabel = 'berkas';
+
+        if ($this->input->post('form') == 'pribadi') {
+             $data['id_user'] = $this->input->post('nama');
         }
+
+            $tabel = 'berkas';
 
         if (!empty($_FILES['file_sk']['name'])) {
             $upload = $this->_do_upload();
@@ -97,18 +105,23 @@ class Berkas extends CI_Controller {
         echo json_encode(array("status" => TRUE));
     }
 
-    public function edit($id) {
+    public function edit($tipe="",$id="") {
         $title = $subtitle = $page = "";
         if ($tipe == "bersama") {
-            $title = $subtitle = "SK Bersama";
+            $title = $subtitle = "SK Bersama - Edit";
             $page = "sk_bersama";
-            $url = "berkas/bersama_tambah";
+            $url = "berkas/bersama_edit";
+            $tipe_berkas = 0;
         } elseif ($tipe == "pribadi") {
-            $title = $subtitle = "SK Pribadi";
+            $title = $subtitle = "SK Pribadi - Edit";
             $page = "sk_pribadi";
-            $url = "berkas/pribadi_tambah";
+            $url = "berkas/pribadi_edit";
+            $tipe_berkas = 1;
         }
 
+        $data['user'] = $this->form_option->list_user();
+        $data['jenis'] = $this->form_option->list_jenis_berkas($tipe_berkas);
+        $data['tipe'] = $tipe;
         $data['title'] = $title;
         $data['subtitle'] = $subtitle;
         $data['page'] = $page;
@@ -120,22 +133,26 @@ class Berkas extends CI_Controller {
     public function ajax_update() {
         $this->_validate($this->input->post('form'));
 
-        if ($this->input->post('form') == 'pribadi') {
-            $data = array(
+        $data = array(
                 'no_berkas' => $this->input->post('nomor_sk'),
                 'nama_berkas' => $this->input->post('nama_sk'),
-                'id_user' => $this->input->post('nama'),
+                'id_jenis_berkas' => $this->input->post('jenis_sk'),
+                'keterangan_berkas' => $this->input->post('keterangan_sk'),
                 'tanggal_berkas' => $this->input->post('tanggal_sk'),
                 'publish' => $this->input->post('publish'),
             );
-            $tabel = 'berkas';
+
+        if ($this->input->post('form') == 'pribadi') {
+             $data['id_user'] = $this->input->post('nama');
         }
 
-        if ($this->input->post('remove')) { // if remove photo checked
-            if (file_exists('upload/' . $this->input->post('remove')) && $this->input->post('remove'))
-                unlink('upload/' . $this->input->post('remove'));
-            $data['url_berkas'] = '';
-        }
+            $tabel = 'berkas';
+
+        // if ($this->input->post('remove')) { // if remove photo checked
+        //     if (file_exists('upload/' . $this->input->post('remove')) && $this->input->post('remove'))
+        //         unlink('upload/' . $this->input->post('remove'));
+        //     $data['url_berkas'] = '';
+        // }
 
         if (!empty($_FILES['file_sk']['name'])) {
             $upload = $this->_do_upload();
@@ -164,19 +181,10 @@ class Berkas extends CI_Controller {
     }
 
     private function _do_upload() {
-        /* $config['upload_path'] = 'upload/';
-          $config['allowed_types'] = 'gif|jpg|png';
-          $config['max_size'] = 100; //set max size allowed in Kilobyte
-          $config['max_width'] = 1000; // set max width image allowed
-          $config['max_height'] = 1000; // set max height allowed
-          $config['file_name'] = round(microtime(true) * 1000); //just milisecond timestamp fot unique name
-         */
-
         // set path to store uploaded files
         $config['upload_path'] = './upload/'; // set allowed file types
         $config['allowed_types'] = 'pdf'; // set upload limit, set 0 for no limit
-        $config['max_size'] = 0;
-        // var_dump($config['upload_path']);exit();
+        $config['max_size'] = 2100;
 
         $this->load->library('upload', $config);
 $this->upload->initialize($config);
@@ -316,12 +324,6 @@ $this->upload->initialize($config);
              $data['status'] = FALSE;
         }
 
-        // if ($this->input->post('file') == '') {
-        //         $data['inputerror'][] = 'File';
-        //         $data['error_string'][] = 'File is required';
-        //         $data['status'] = FALSE;
-        //     }
-
         if ($data['status'] === FALSE) {
             echo json_encode($data);
             exit();
@@ -340,6 +342,7 @@ $this->upload->initialize($config);
             $row = array();
             $row[] = $berkas->no_berkas;
             $row[] = $berkas->nama_berkas;
+            $row[] = $berkas->jenis_berkas;
             //if($tipe == "pribadi")
             $row[] = "<center>" . $berkas->tanggal_berkas . "</center>";
             $row[] = $berkas->nama;
@@ -352,7 +355,7 @@ $this->upload->initialize($config);
             //add html for action
 
             $row[] = "<center><a class='btn btn-outline-dark btn-sm' href='javascript:void(0)' title='Download'><i class='fas fa-file-pdf'></i></a>
-                <a class='btn btn-outline-info btn-sm' href='javascript:void(0)' title='Edit' onclick='edit($berkas->id_berkas)'><i class='fas fa-edit'></i></a>
+                <a class='btn btn-outline-info btn-sm' href='".site_url('berkas/edit/') . $tipe."/".md5($berkas->id_berkas)."' title='Edit'><i class='fas fa-edit'></i></a>
                   <a class='btn btn-outline-danger btn-sm' href='javascript:void(0)' title='Hapus' onclick='del($berkas->id_berkas)'><i class='fas fa-trash-alt'></i></a></center>";
 
             $data[] = $row;

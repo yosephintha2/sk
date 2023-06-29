@@ -142,10 +142,11 @@
                                 <div class="form-group row">
                                     <label for="file_sk" class="col-sm-4 col-form-label">File SK</label>
                                     <div class="col-sm-8">
-                                        <input type="file" class="form-control" accept="application/pdf" id="file_sk" name="file_sk" required placeholder="">
+                                        <input type="file" class="form-control" accept="application/pdf" id="file_sk" name="file_sk" required placeholder="">                                        
                                         <p style="color:red"><i>*) Max 2MB</i></p>
                                         <span class="help-block"></span>
                                     </div>
+                                    <!-- <div class="col-sm-2"><input type="checkbox" name="remove" value=""/> Remove file when saving</div> -->
                                 </div>
                             </div>
                             <!-- /.card-body -->

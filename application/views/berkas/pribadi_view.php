@@ -75,6 +75,7 @@
                                       <!-- <th class="text-center">No</th> -->
                                         <th class="text-center">No. SK</th>
                                         <th class="text-center">Nama SK</th>
+                                        <th class="text-center">Jenis SK</th>
                                         <th class="text-center">Tanggal SK</th>
                                         <th class="text-center">Nama Guru/Karyawan</th>
                                         <th class="text-center">Publish</th>

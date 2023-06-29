@@ -39,4 +39,16 @@ class Form_option {
         return $query->result();
     }
 
+    public function list_jenis_berkas($tipe) {
+        $CI = & get_instance();
+        $CI->load->model('db_model');
+        //$option[''] = 'Jenis Pertanyaan Kuisioner';
+        $query = $CI->db_model->get('jenis_berkas', '*', array('tipe_berkas' => $tipe));
+        // foreach ($query->result() as $data) {
+        //     $option[$data->jenis_berkas] = $data->jenis_berkas;
+        // }   
+        // return $option;
+        return $query->result();
+    }
+
 }
