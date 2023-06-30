@@ -21,9 +21,11 @@ class Berkas_model extends CI_Model {
         if ($tipe == "pribadi") {
             //$column_order = array('no_berkas','nama_berkas','nama_user','tanggal_berkas','publish',null); //set column field database for datatable orderable	
             $this->db->where('j.tipe_berkas', 1);
+            $this->db->where('b.id_user >= ', 1);
         } elseif ($tipe == "bersama") {
             //$column_order = array('no_berkas','nama_berkas','tanggal_berkas','publish',null); //set column field database for datatable orderable	
             $this->db->where('j.tipe_berkas', 0);
+            $this->db->where('b.id_user = ', 0);
         }
 
         /*

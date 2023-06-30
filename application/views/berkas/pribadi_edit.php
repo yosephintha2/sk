@@ -22,6 +22,9 @@
         }
     </style>
 
+<?php
+// var_dump($row);
+?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -61,9 +64,10 @@
                             <div class="card-body">
                                 <div class="form-group row">
                                     <input type="hidden" id="" name="form" value="<?php echo $tipe ?>">
+                                    <input type="hidden" id="" name="id_berkas" value="<?php echo $row->id_berkas ?>">
                                     <label for="nomor_sk" class="col-sm-4 col-form-label">Nomor SK</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="nomor_sk" name="nomor_sk" required placeholder="">
+                                        <input type="text" class="form-control" id="nomor_sk" name="nomor_sk" value="<?php echo $row->no_berkas ?>" required placeholder="">
                                         <span class="help-block"></span>
                                     </div>
                                 </div>
@@ -86,14 +90,14 @@
                                 <div class="form-group row">
                                     <label for="nama_sk" class="col-sm-4 col-form-label">Nama SK</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="nama_sk" name="nama_sk" required placeholder="">
+                                        <input type="text" class="form-control" id="nama_sk" name="nama_sk" value="<?php echo $row->nama_berkas ?>" required placeholder="">
                                         <span class="help-block"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="tanggal_sk" class="col-sm-4 col-form-label">Tanggal SK</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="date-own form-control" id="tanggal_sk" name="tanggal_sk" required placeholder="">
+                                        <input type="text" class="date-own form-control" id="tanggal_sk" name="tanggal_sk" value="<?php echo $row->tanggal_berkas ?>" required placeholder="">
                                         <span class="help-block"></span>
                                     </div>
                                     <!-- 
@@ -123,7 +127,7 @@
                                 <div class="form-group row">
                                     <label for="keterangan_sk" class="col-sm-4 col-form-label">Keterangan</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="keterangan_sk" name="keterangan_sk" placeholder="">
+                                        <input type="text" class="form-control" id="keterangan_sk" name="keterangan_sk" value="<?php echo $row->keterangan_berkas ?>"placeholder="">
                                         <span class="help-block"></span>
                                     </div>
                                 </div>
@@ -140,9 +144,9 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="file_sk" class="col-sm-4 col-form-label">File SK</label>
+                                    <label for="file_sk" class="col-sm-4 col-form-label">Ganti File SK</label>
                                     <div class="col-sm-8">
-                                        <input type="file" class="form-control" accept="application/pdf" id="file_sk" name="file_sk" required placeholder="">                                        
+                                        <input type="file" class="form-control" accept="application/pdf" id="file_sk" name="file_sk" value="<?php echo base_url().'upload/'.$row->url_berkas ?>" required placeholder="">                                        
                                         <p style="color:red"><i>*) Max 2MB</i></p>
                                         <span class="help-block"></span>
                                     </div>

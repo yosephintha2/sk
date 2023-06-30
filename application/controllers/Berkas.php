@@ -354,7 +354,7 @@ $this->upload->initialize($config);
 
             //add html for action
 
-            $row[] = "<center><a class='btn btn-outline-dark btn-sm' href='javascript:void(0)' title='Download'><i class='fas fa-file-pdf'></i></a>
+            $row[] = "<center><a class='btn btn-outline-dark btn-sm' href='".base_url()."upload/".$berkas->url_berkas."' target='_blank' title='Download'><i class='fas fa-file-pdf'></i></a>
                 <a class='btn btn-outline-info btn-sm' href='".site_url('berkas/edit/') . $tipe."/".md5($berkas->id_berkas)."' title='Edit'><i class='fas fa-edit'></i></a>
                   <a class='btn btn-outline-danger btn-sm' href='javascript:void(0)' title='Hapus' onclick='del($berkas->id_berkas)'><i class='fas fa-trash-alt'></i></a></center>";
 
