@@ -40,7 +40,6 @@
                         <i class="nav-icon far fa-file-alt"></i>
                         <p>
                             SK Pribadi
-                            <span class="badge badge-info right">2</span>
                         </p>
                     </a>
                 </li>
@@ -101,12 +100,12 @@
                                 <p>Jenis SK</p>
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a href="<?php echo site_url() . 'setting/jatah_cuti' ?>" class="nav-link <?php echo ($page == 'jatah_cuti') ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Jatah Cuti</p>
                             </a>
-                        </li>
+                        </li> -->
                         <li class="nav-item">
                             <a href="<?php echo site_url() . 'setting/tipe_pengguna' ?>" class="nav-link <?php echo ($page == 'tipe_pengguna') ? 'active' : '' ?>">
                                 <i class="far fa-circle nav-icon"></i>

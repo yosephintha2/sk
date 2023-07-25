@@ -77,8 +77,8 @@
                                         <th class="text-center">Nama SK</th>
                                         <th class="text-center">Jenis SK</th>
                                         <th class="text-center">Tanggal SK</th>
-                                        <th class="text-center">Nama Guru/Karyawan</th>
                                         <th class="text-center">Keterangan</th>
+                                        <!-- <th class="text-center">Nama Guru/Karyawan</th> -->
                                         <th class="text-center">Publish</th>
                                         <th class="text-center">Aksi</th>
                                     </tr>

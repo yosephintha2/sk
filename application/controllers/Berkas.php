@@ -158,19 +158,20 @@ class Berkas extends CI_Controller {
             $upload = $this->_do_upload();
 
             //delete file
-            $file = $this->berkas->get_by_id(md5($this->input->post('id')));
+            $file = $this->berkas->get_by_id(md5($this->input->post('id_berkas')));
             if (file_exists('upload/' . $file->url_berkas) && $file->url_berkas)
                 unlink('upload/' . $file->url_berkas);
 
             $data['url_berkas'] = $upload;
         }
 
-        $this->berkas->update(array('id' => $this->input->post('id')), $data);
+        $this->berkas->update(array('id_berkas' => $this->input->post('id_berkas')), $data);
+        // echo $this->db->last_query();exit();
         echo json_encode(array("status" => TRUE));
     }
 
     public function ajax_delete($id) {
-        $this->setting->delete_by_id(md5($id));
+        $this->berkas->delete_by_id(md5($id));
         echo json_encode(array("status" => TRUE));
     }
 
@@ -187,7 +188,7 @@ class Berkas extends CI_Controller {
         $config['max_size'] = 2100;
 
         $this->load->library('upload', $config);
-$this->upload->initialize($config);
+        $this->upload->initialize($config);
 
         if (!$this->upload->do_upload('file_sk')) { //upload and validate
             $data['inputerror'][] = 'files';
@@ -318,11 +319,11 @@ $this->upload->initialize($config);
             }
         }
 
-        if (empty($_FILES['file_sk']['name'])) {
-             $data['inputerror'][] = 'File';
-             $data['error_string'][] = 'File is required';
-             $data['status'] = FALSE;
-        }
+        // if (empty($_FILES['file_sk']['name'])) {
+        //      $data['inputerror'][] = 'File';
+        //      $data['error_string'][] = 'File is required';
+        //      $data['status'] = FALSE;
+        // }
 
         if ($data['status'] === FALSE) {
             echo json_encode($data);
@@ -343,9 +344,10 @@ $this->upload->initialize($config);
             $row[] = $berkas->no_berkas;
             $row[] = $berkas->nama_berkas;
             $row[] = $berkas->jenis_berkas;
-            //if($tipe == "pribadi")
             $row[] = "<center>" . $berkas->tanggal_berkas . "</center>";
-            $row[] = $berkas->nama;
+            if($tipe == "pribadi")
+                $row[] = $berkas->nama;
+            $row[] = $berkas->keterangan_berkas;
 
             if ($berkas->publish == 0)
                 $row[] = "<td><center><small class='badge badge-secondary'>Hide</small></center></td>";

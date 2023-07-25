@@ -32,7 +32,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><?php //echo $subtitle ?></h1>
+                    <h1><?php echo $subtitle ?></h1>
                 </div>
                 <!-- <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
@@ -58,7 +58,7 @@
                             </div> 
                         </div>-->
                         <!-- /.card-header -->
-                        <?php var_dump($row)?>
+                        <?php //var_dump($row)?>
                         <!-- form start -->
                         <form class="form-horizontal" id="form">
                             <div class="card-body">

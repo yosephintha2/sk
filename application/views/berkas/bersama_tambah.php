@@ -22,9 +22,6 @@
         }
     </style>
 
-<?php
-// var_dump($row);
-?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -32,7 +29,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1><?php //echo $subtitle ?></h1>
+                    <h1><?php echo $subtitle ?></h1>
                 </div>
                 <!-- <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
@@ -58,16 +55,15 @@
                             </div> 
                         </div>-->
                         <!-- /.card-header -->
-                        <?php var_dump($row)?>
+
                         <!-- form start -->
                         <form class="form-horizontal" id="form">
                             <div class="card-body">
                                 <div class="form-group row">
                                     <input type="hidden" id="" name="form" value="<?php echo $tipe ?>">
-                                    <input type="hidden" id="" name="id_berkas" value="<?php echo $row->id_berkas ?>">
                                     <label for="nomor_sk" class="col-sm-4 col-form-label">Nomor SK</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="nomor_sk" name="nomor_sk" value="<?php echo $row->no_berkas ?>" required placeholder="">
+                                        <input type="text" class="form-control" id="nomor_sk" name="nomor_sk" required placeholder="">
                                         <span class="help-block"></span>
                                     </div>
                                 </div>
@@ -78,11 +74,8 @@
                                         <select class="form-control select2" id="jenis_sk" name="jenis_sk" required="">
                                             <option value="">Pilih Jenis SK</option>
                                             <?php
-                                            $selected_jenis = "";
                                             foreach ($jenis as $j) {
-                                                if ($row->id_jenis_berkas = $j->id_jenis_berkas)
-                                                    $selected_jenis = "selected";
-                                                echo "<option value='$j->id_jenis_berkas' $selected_jenis>$j->jenis_berkas</option>";
+                                                echo "<option value='$j->id_jenis_berkas'>$j->jenis_berkas</option>";
                                             }
                                             ?>
                                         </select>
@@ -93,14 +86,14 @@
                                 <div class="form-group row">
                                     <label for="nama_sk" class="col-sm-4 col-form-label">Nama SK</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="nama_sk" name="nama_sk" value="<?php echo $row->nama_berkas ?>" required placeholder="">
+                                        <input type="text" class="form-control" id="nama_sk" name="nama_sk" required placeholder="">
                                         <span class="help-block"></span>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="tanggal_sk" class="col-sm-4 col-form-label">Tanggal SK</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="date-own form-control" id="tanggal_sk" name="tanggal_sk" value="<?php echo $row->tanggal_berkas ?>" required placeholder="">
+                                        <input type="text" class="date-own form-control" id="tanggal_sk" name="tanggal_sk" required placeholder="">
                                         <span class="help-block"></span>
                                     </div>
                                     <!-- 
@@ -111,30 +104,11 @@
                                                             </div>
                                                         </div>
                                     -->                  </div>
-                                <div class="form-group row">
-                                    <label for="nama" class="col-sm-4 col-form-label">Nama Guru/Karyawan</label>
-                                    <div class="col-sm-8 slct nama">
-                                        <div class="form-group">
-                                        <select class="form-control select2" id="nama" name="nama" required="">
-                                            <option value="">Pilih Guru/Karyawan</option>
-                                            <?php
-                                            $selected_nama = "";
-                                            foreach ($user as $u) {
-                                                if ($row->id_user = $u->id_user)
-                                                    $selected_nama = "selected";
-
-                                                echo "<option value='$u->id_user' $selected_nama>$u->nama</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                        <span class="help-block"></span>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group row">
                                     <label for="keterangan_sk" class="col-sm-4 col-form-label">Keterangan</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="keterangan_sk" name="keterangan_sk" value="<?php echo $row->keterangan_berkas ?>"placeholder="">
+                                        <input type="text" class="form-control" id="keterangan_sk" name="keterangan_sk" placeholder="">
                                         <span class="help-block"></span>
                                     </div>
                                 </div>
@@ -142,29 +116,21 @@
                                     <label for="nama" class="col-sm-4 col-form-label">Publish</label>
                                     <div class="col-sm-8">
                                         <div class="form-group">
-                                            <?php
-                                                $selected_publish = "";
-                                                if($row->publish = 1) $selected_publish = "selected";
-                                            ?>
                                         <select class="form-control select2" id="publish" name="publish" required="">
-                                            <option value="1" <?php echo $selected_publish ?>>Ya</option>
-                                            <option value="0" <?php echo $selected_publish ?>>Tidak</option>
+                                            <option value="1">Ya</option>
+                                            <option value="0">Tidak</option>
                                         </select>
                                         <span class="help-block"></span>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="file_sk" class="col-sm-4 col-form-label">Ganti File SK</label>
+                                    <label for="file_sk" class="col-sm-4 col-form-label">File SK</label>
                                     <div class="col-sm-8">
-                                        <div id="textFile">
-                                        <a class='btn btn-link btn-sm' href='<?php echo base_url()."upload/".$row->url_berkas ?>' target='_blank' title='Download'><?php echo $row->url_berkas ?></a>
-                                    </div>
-                                        <input type="file" class="form-control" accept="application/pdf" id="file_sk" name="file_sk" value=""  placeholder="" onchange="textFile();">                                        
+                                        <input type="file" class="form-control" accept="application/pdf" id="file_sk" name="file_sk" required placeholder="">
                                         <p style="color:red"><i>*) Max 2MB</i></p>
                                         <span class="help-block"></span>
                                     </div>
-                                    <!-- <div class="col-sm-2"><input type="checkbox" name="remove" value=""/> Remove file when saving</div> -->
                                 </div>
                             </div>
                             <!-- /.card-body -->
@@ -249,10 +215,6 @@
     });
 });
 
-function textFile(){
-    $('#textFile').html(''); // show photo
-}
-
     function save() {
         // ajax adding data to database
         $("#hidden").show();
@@ -279,7 +241,7 @@ function textFile(){
     } else {
         var formData = new FormData($('#form')[0]);
         $.ajax({
-            url: "<?php echo site_url('berkas/ajax_update') ?>",
+            url: "<?php echo site_url('berkas/ajax_add') ?>",
             type: "POST",
             // data: formData,
             data: formData,
