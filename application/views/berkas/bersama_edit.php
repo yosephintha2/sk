@@ -111,26 +111,7 @@
                                                             </div>
                                                         </div>
                                     -->                  </div>
-                                <div class="form-group row">
-                                    <label for="nama" class="col-sm-4 col-form-label">Nama Guru/Karyawan</label>
-                                    <div class="col-sm-8 slct nama">
-                                        <div class="form-group">
-                                        <select class="form-control select2" id="nama" name="nama" required="">
-                                            <option value="">Pilih Guru/Karyawan</option>
-                                            <?php
-                                            $selected_nama = "";
-                                            foreach ($user as $u) {
-                                                if ($row->id_user = $u->id_user)
-                                                    $selected_nama = "selected";
-
-                                                echo "<option value='$u->id_user' $selected_nama>$u->nama</option>";
-                                            }
-                                            ?>
-                                        </select>
-                                        <span class="help-block"></span>
-                                        </div>
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group row">
                                     <label for="keterangan_sk" class="col-sm-4 col-form-label">Keterangan</label>
                                     <div class="col-sm-8">
