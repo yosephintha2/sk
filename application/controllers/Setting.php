@@ -48,8 +48,10 @@ class Setting extends CI_Controller {
         $this->load->view('setting/jatah_cuti', $data);
     }
 
-    public function ajax_edit($id) {
-        $form = $_POST['form'];
+    public function ajax_edit($id,$form) {
+        // var_dump($_POST['form']);
+        // exit();
+        //$form = $_POST['form'];
         if ($form == 'tipe_pengguna') {
             $tabel = 'tipe_user';
             $tabel_id = 'id_tipe_user';

@@ -186,7 +186,7 @@
 
 //Ajax Load data from ajax
         $.ajax({
-            url: "<?php echo site_url('setting/ajax_edit') ?>/" + id,
+            url: "<?php echo site_url('setting/ajax_edit') ?>/" + id +"/jenis_sk",
             type: "POST",
             data: {form: 'jenis_sk'},
             dataType: "JSON",

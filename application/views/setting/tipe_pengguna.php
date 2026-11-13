@@ -143,11 +143,10 @@
 
 //Ajax Load data from ajax
         $.ajax({
-            url: "<?php echo site_url('setting/ajax_edit') ?>/" + id,
+            url: "<?php echo site_url('setting/ajax_edit') ?>/" + id +"/tipe_pengguna",
             type: "GET",
             dataType: "JSON",
             success: function (data) {
-
                 $('[name="id"]').val(data.id_tipe_user);
                 $('[name="tipe_pengguna"]').val(data.tipe_user);
                 $('[name="form"]').val('tipe_pengguna');
